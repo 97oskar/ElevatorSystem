@@ -8,6 +8,7 @@ import java.util.Scanner;
 public class Elevator {
     private Integer id;
     private Integer currentFloor;
+    private Stateful state;
     private Deque<ElevatorOrder> orders = new LinkedList<ElevatorOrder>();
 
     public Elevator(int Id, int initialFloor) {

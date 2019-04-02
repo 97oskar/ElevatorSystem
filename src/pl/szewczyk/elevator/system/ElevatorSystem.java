@@ -1,6 +1,5 @@
 package pl.szewczyk.elevator.system;
 
-import javax.naming.ldap.Control;
 import java.util.ArrayList;
 
 
