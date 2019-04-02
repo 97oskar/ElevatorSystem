@@ -17,7 +17,7 @@ public class ElevatorSystem {
 
     public void pickUp(Integer floorNumber, Integer direction) {
         ElevatorOrder newOrder = new ElevatorOrder(floorNumber, direction);
-        elevators.get(controler.chooseElevatorToOrder(status(), newOrder)).addOrder(newOrder);
+        elevators.get(controler.chooseElevatorToOrder(status(), newOrder)).receiveOrder(newOrder);
     }
 
     public void update(Integer elevatorId, Integer currentFloor, Integer targetFloor) {

@@ -6,6 +6,21 @@ import java.util.Scanner;
 
 
 public class Elevator {
+    public Integer getId() {
+        return id;
+    }
+
+    public Integer getCurrentFloor() {
+        return currentFloor;
+    }
+
+    public ElevatorOrder getCurrentOrder() {
+        if(orders.isEmpty())
+            return null;
+
+        return orders.peek();
+    }
+
     private Integer id;
     private Integer currentFloor;
     private Stateful state;
@@ -14,34 +29,35 @@ public class Elevator {
     public Elevator(int Id, int initialFloor) {
         this.id = Id;
         this.currentFloor = initialFloor;
+        this.state = new IdleState(this);
     }
 
     public ElevatorStatus getStatus() {
-        if (orders.isEmpty())
-            return new ElevatorStatus(this.id, this.currentFloor, null);
-        else
-            return new ElevatorStatus(this.id, this.currentFloor, this.orders.peek().getTargetFloor());
+        return state.getStatus();
     }
 
     public void move() {
-        if (!orders.isEmpty()) {
-            if (isTargetFloorReached()) {
-                if (orders.peek().isFinalFloorChoosen())
-                    orders.remove();
-                else
-                    orders.peek().setFinalFloor(getTargetFloor());
-            } else {
-                if (currentFloor > this.orders.peek().getTargetFloor()) {
-                    this.currentFloor--;
-                } else {
-                    this.currentFloor++;
-                }
-            }
-        }
+        state.move();
+    }
+
+    public void moveUp() {
+        currentFloor++;
+    }
+
+    public void moveDown() {
+        currentFloor--;
+    }
+
+    public void changeState(Stateful newState) {
+        this.state = newState;
     }
 
     private boolean isTargetFloorReached() {
         return orders.peek().getTargetFloor().equals(currentFloor);
+    }
+
+    public void receiveOrder(ElevatorOrder newOrder) {
+        state.receiveOrder(newOrder);
     }
 
     public void addOrder(ElevatorOrder newOrder) {
@@ -53,11 +69,26 @@ public class Elevator {
         this.orders.addFirst(new ElevatorOrder(targetFloor, true));
     }
 
-    public Integer getTargetFloor() {
+    public Integer receiveTargetFloorFromInput() {
         Scanner scan = new Scanner(System.in);
         System.out.println("[" + id + "] " + "You're on " + currentFloor + " floor. Choose target: ");
         int targetFloor = scan.nextInt();
 
         return targetFloor;
+    }
+
+    public void removeCurrentOrder() {
+        orders.pop();
+
+        adjustStateToNextStep();
+    }
+
+    private void adjustStateToNextStep() {
+        if(orders.isEmpty())
+            changeState(new IdleState(this));
+        else if(currentFloor < orders.peek().getTargetFloor())
+            changeState(new MoveUpState(this));
+        else
+            changeState(new MoveDownState(this));
     }
 }

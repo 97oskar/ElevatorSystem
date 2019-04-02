@@ -3,6 +3,7 @@ package pl.szewczyk.elevator.system;
 
 public class ElevatorOrder {
     private Integer targetFloor;
+    private Integer direction;
     private boolean isFinalFloorChoosen;
 
     ElevatorOrder(Integer targetFloor, boolean isFinalFloorChoosen) {
@@ -12,7 +13,8 @@ public class ElevatorOrder {
 
     public ElevatorOrder(Integer targetFloor, Integer direction) {
         this.targetFloor = targetFloor;
-
+        this.direction = direction;
+        this.isFinalFloorChoosen = false;
     }
 
     public boolean isFinalFloorChoosen() {
