@@ -10,6 +10,11 @@ public class ElevatorOrder {
         this.isFinalFloorChoosen = isFinalFloorChoosen;
     }
 
+    public ElevatorOrder(Integer targetFloor, Integer direction) {
+        this.targetFloor = targetFloor;
+
+    }
+
     public boolean isFinalFloorChoosen() {
         return isFinalFloorChoosen;
     }

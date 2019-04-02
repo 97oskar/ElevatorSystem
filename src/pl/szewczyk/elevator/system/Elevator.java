@@ -43,7 +43,7 @@ public class Elevator {
         return orders.peek().getTargetFloor().equals(currentFloor);
     }
 
-    public void addTargetFloor(ElevatorOrder newOrder) {
+    public void addOrder(ElevatorOrder newOrder) {
         this.orders.addLast(newOrder);
     }
 

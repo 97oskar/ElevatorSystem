@@ -1,21 +1,24 @@
 package pl.szewczyk.elevator.system;
 
+import javax.naming.ldap.Control;
 import java.util.ArrayList;
 
 
 public class ElevatorSystem {
     private Integer numberOfFloors;
+    private Controler controler;
     private ArrayList<Elevator> elevators = new ArrayList<Elevator>();
 
-    public ElevatorSystem(Integer numberOfElevators, Integer numberOfFloors) {
+    public ElevatorSystem(Integer numberOfElevators, Integer numberOfFloors, DistributingOrders distributionStrategy) {
         this.numberOfFloors = numberOfFloors;
-
+        this.controler = new Controler(distributionStrategy);
         for (int id = 0; id < numberOfElevators; id++)
             elevators.add(new Elevator(id, 0));
     }
 
     public void pickUp(Integer floorNumber, Integer direction) {
-        elevators.get(selectElevatorToOrder(floorNumber, direction)).addTargetFloor(new ElevatorOrder(floorNumber, false));
+        ElevatorOrder newOrder = new ElevatorOrder(floorNumber, direction);
+        elevators.get(controler.chooseElevatorToOrder(status(), newOrder)).addOrder(newOrder);
     }
 
     public void update(Integer elevatorId, Integer currentFloor, Integer targetFloor) {
@@ -33,9 +36,5 @@ public class ElevatorSystem {
             elevatorsStatuses.add(elevator.getStatus());
 
         return elevatorsStatuses;
-    }
-
-    private Integer selectElevatorToOrder(Integer floorNumber, Integer direction) {
-        return (int) (Math.random() * this.elevators.size());                                                                                            //TO DO
     }
 }
