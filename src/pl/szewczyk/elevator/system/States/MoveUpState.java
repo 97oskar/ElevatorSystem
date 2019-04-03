@@ -1,9 +1,6 @@
 package pl.szewczyk.elevator.system.States;
 
-import pl.szewczyk.elevator.system.Elevator;
-import pl.szewczyk.elevator.system.ElevatorOrder;
-import pl.szewczyk.elevator.system.ElevatorStatus;
-import pl.szewczyk.elevator.system.Stateful;
+import pl.szewczyk.elevator.system.*;
 
 public class MoveUpState implements Stateful {
     private Elevator elevator;
@@ -13,29 +10,22 @@ public class MoveUpState implements Stateful {
     }
 
     @Override
-    public void move() {                                                //!!
+    public void move() {
         elevator.moveUp();
 
-        if(isTargetFloorReached()) {
-            if(elevator.getCurrentOrder().isFinalFloorChoosen()) {
-                elevator.removeCurrentOrder();
-            }
-            else
-                elevator.getCurrentOrder().setFinalFloor(elevator.receiveTargetFloorFromInput());
-        }
+        if (isTargetFloorReached()) elevator.getCurrentCommand().execute(elevator);
     }
 
     @Override
-    public void receiveOrder(ElevatorOrder newOrder) {
-        elevator.addOrder(newOrder);
-}
+    public void receiveOrder(Orderable newOrder) {
+    }
 
     @Override
     public ElevatorStatus getStatus() {
-        return new ElevatorStatus(elevator.getId(), elevator.getCurrentFloor(), elevator.getCurrentOrder().getTargetFloor());
+        return new ElevatorStatus(elevator.getId(), elevator.getCurrentFloor(), elevator.getCurrentCommand().getFloorNumber());
     }
 
     private boolean isTargetFloorReached() {
-        return elevator.getCurrentFloor().equals(elevator.getCurrentOrder().getTargetFloor());
+        return elevator.getCurrentFloor().equals(elevator.getCurrentCommand().getFloorNumber());
     }
 }

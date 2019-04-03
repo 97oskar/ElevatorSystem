@@ -8,14 +8,15 @@ public class Main {
 
         ElevatorSystem elevatorSystem = new ElevatorSystem(4, 10, new RandomDistribution());
 
-        elevatorSystem.pickUp(1, 1);
-        elevatorSystem.pickUp(3, 1);
+        elevatorSystem.pickUp(4, 1);
+        elevatorSystem.pickUp(6, 1);
 
         while(true) {
-            elevatorSystem.step();
-
+            System.out.println("###########");
             for(ElevatorStatus status : elevatorSystem.status())
                 System.out.println(status);
+
+            elevatorSystem.step();
         }
 
     }

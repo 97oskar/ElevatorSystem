@@ -1,11 +1,6 @@
 package pl.szewczyk.elevator.system.States;
 
-import pl.szewczyk.elevator.system.Elevator;
-import pl.szewczyk.elevator.system.ElevatorOrder;
-import pl.szewczyk.elevator.system.ElevatorStatus;
-import pl.szewczyk.elevator.system.Stateful;
-import pl.szewczyk.elevator.system.States.MoveDownState;
-import pl.szewczyk.elevator.system.States.MoveUpState;
+import pl.szewczyk.elevator.system.*;
 
 public class IdleState implements Stateful {
     private Elevator elevator;
@@ -19,10 +14,8 @@ public class IdleState implements Stateful {
     }
 
     @Override
-    public void receiveOrder(ElevatorOrder newOrder) {
-        elevator.addOrder(newOrder);
-
-        if (elevator.getStatus().getCurrentFloor() < newOrder.getTargetFloor())
+    public void receiveOrder(Orderable newOrder) {
+        if (elevator.getStatus().getCurrentFloor() < newOrder.getFloorNumber())
             elevator.changeState(new MoveUpState(elevator));
         else
             elevator.changeState(new MoveDownState(elevator));

@@ -1,5 +1,7 @@
 package pl.szewczyk.elevator.system;
 
+import pl.szewczyk.elevator.system.Commands.ElevatorOrder;
+
 import java.util.ArrayList;
 
 
@@ -10,13 +12,13 @@ public class ElevatorSystem {
 
     public ElevatorSystem(Integer numberOfElevators, Integer numberOfFloors, DistributingOrders distributionStrategy) {
         this.numberOfFloors = numberOfFloors;
-        this.ordersDistributor= distributionStrategy;
+        this.ordersDistributor = distributionStrategy;
         for (int id = 0; id < numberOfElevators; id++)
             elevators.add(new Elevator(id, 0));
     }
 
     public void pickUp(Integer floorNumber, Integer direction) {
-        ElevatorOrder newOrder = new ElevatorOrder(floorNumber, direction);
+        Orderable newOrder = new ElevatorOrder(floorNumber, direction);
         elevators.get(ordersDistributor.distributeOrder(status(), newOrder)).receiveOrder(newOrder);
     }
 
