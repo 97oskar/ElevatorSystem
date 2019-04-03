@@ -6,12 +6,12 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Hello elevators. I will be your master");
 
-        ElevatorSystem elevatorSystem = new ElevatorSystem(4, 10, new RandomDistribution());
+        ElevatorSystem elevatorSystem = new ElevatorSystem(1, 10, new RandomDistribution());
 
-        elevatorSystem.pickUp(4, 1);
-        elevatorSystem.pickUp(6, 1);
+        elevatorSystem.pickUp(2, 1);
+        elevatorSystem.pickUp(10, -1);
 
-        while(true) {
+        for(int i=0; i<50; i++) {
             System.out.println("###########");
             for(ElevatorStatus status : elevatorSystem.status())
                 System.out.println(status);

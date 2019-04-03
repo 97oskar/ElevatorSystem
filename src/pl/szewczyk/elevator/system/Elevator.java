@@ -55,12 +55,16 @@ public class Elevator {
         this.state = newState;
     }
 
-    public void receiveNewCommand(Orderable newCommand) {
-        state.receiveCommand(newCommand);
-        this.commands.addLast(newCommand);
+    public void receiveCommand(Orderable command) {
+        state.receiveCommand(command);
+        this.commands.addLast(command);
     }
 
-    public void removeCurrentCommand() {
+    public void addCommandAsFirst(Orderable command) {
+        this.commands.addFirst(command);
+    }
+
+    public void removeExecutedCommand() {
         commands.pop();
     }
 
@@ -73,7 +77,7 @@ public class Elevator {
     }
 
     public Integer receiveTargetFloorFromInput() {
-        System.out.println("[" + id + "] " + "You're on " + currentFloor + " floor. Choose target: ");
+        System.out.println("\n[" + id + "] " + "You're on " + currentFloor + " floor. Choose target: ");
         return inputValidator.getInteger(currentFloor);
     }
 

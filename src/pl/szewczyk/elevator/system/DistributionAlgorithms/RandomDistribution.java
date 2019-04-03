@@ -15,9 +15,9 @@ public class RandomDistribution implements DistributingOrders {
         Integer floorNumberOfChosenElevator = chosenElevator.getCurrentFloor();
 
         if(floorNumberOfChosenElevator.equals(floorNumber))
-            chosenElevator.receiveNewCommand(new ReceiveOrder());
+            chosenElevator.receiveCommand(new ReceiveOrder(floorNumber));
         else
-            chosenElevator.receiveNewCommand(new MoveToOrder(floorNumber));
+            chosenElevator.receiveCommand(new MoveToOrder(floorNumber));
     }
 
     private Integer getRandomElevatorId(Integer numberOfElevators) {

@@ -2,8 +2,10 @@ package pl.szewczyk.elevator.system.Commands;
 
 import pl.szewczyk.elevator.system.Elevator;
 import pl.szewczyk.elevator.system.Orderable;
+import pl.szewczyk.elevator.system.States.IdleState;
 import pl.szewczyk.elevator.system.States.MoveDownState;
 import pl.szewczyk.elevator.system.States.MoveUpState;
+import pl.szewczyk.elevator.system.States.ReceiveOrderState;
 
 public class MoveToTarget implements Orderable {
     private Integer floorNumber;
@@ -14,13 +16,15 @@ public class MoveToTarget implements Orderable {
 
     @Override
     public void execute(Elevator elevator) {
-        elevator.removeCurrentCommand();
+        elevator.removeExecutedCommand();
         elevator.updateState();
     }
 
     @Override
     public void setState(Elevator elevator) {
-        if(elevator.getCurrentFloor() < floorNumber)
+        if(elevator.getCurrentFloor().equals(floorNumber))
+            elevator.changeState(new ReceiveOrderState(elevator));
+        else if(elevator.getCurrentFloor() < floorNumber)
             elevator.changeState(new MoveUpState(elevator));
         else
             elevator.changeState(new MoveDownState(elevator));

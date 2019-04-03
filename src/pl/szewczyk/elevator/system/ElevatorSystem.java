@@ -11,6 +11,7 @@ public class ElevatorSystem {
     public ElevatorSystem(Integer numberOfElevators, Integer numberOfFloors, DistributingOrders distributionStrategy) {
         this.numberOfFloors = numberOfFloors;
         this.ordersDistributor = distributionStrategy;
+
         for (int id = 0; id < numberOfElevators; id++)
             elevators.add(new Elevator(id, 0, numberOfFloors));
     }

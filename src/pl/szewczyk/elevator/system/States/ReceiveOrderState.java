@@ -5,10 +5,10 @@ import pl.szewczyk.elevator.system.ElevatorStatus;
 import pl.szewczyk.elevator.system.Orderable;
 import pl.szewczyk.elevator.system.Stateful;
 
-public class AcceptingOrderState implements Stateful {
+public class ReceiveOrderState implements Stateful {
     private Elevator elevator;
 
-    public AcceptingOrderState(Elevator elevator) {
+    public ReceiveOrderState(Elevator elevator) {
         this.elevator = elevator;
     }
 
@@ -22,6 +22,6 @@ public class AcceptingOrderState implements Stateful {
 
     @Override
     public ElevatorStatus getStatus() {
-        return new ElevatorStatus(elevator.getId(), elevator.getCurrentFloor(), elevator.getCurrentCommand().getFloorNumber());
+        return new ElevatorStatus(elevator.getId(), elevator.getCurrentFloor(), null);
     }
 }
