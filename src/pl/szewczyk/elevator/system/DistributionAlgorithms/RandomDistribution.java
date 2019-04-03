@@ -1,7 +1,6 @@
 package pl.szewczyk.elevator.system.DistributionAlgorithms;
 
-import pl.szewczyk.elevator.system.Commands.MoveDownToOrder;
-import pl.szewczyk.elevator.system.Commands.MoveUpToOrder;
+import pl.szewczyk.elevator.system.Commands.MoveToOrder;
 import pl.szewczyk.elevator.system.Commands.ReceiveOrder;
 import pl.szewczyk.elevator.system.DistributingOrders;
 import pl.szewczyk.elevator.system.Elevator;
@@ -17,10 +16,8 @@ public class RandomDistribution implements DistributingOrders {
 
         if(floorNumberOfChosenElevator.equals(floorNumber))
             chosenElevator.receiveCommand(new ReceiveOrder());
-        else if(floorNumberOfChosenElevator < floorNumber)
-            chosenElevator.receiveCommand(new MoveUpToOrder(floorNumber));
         else
-            chosenElevator.receiveCommand(new MoveDownToOrder(floorNumber));
+            chosenElevator.receiveCommand(new MoveToOrder(floorNumber));
     }
 
     private Integer getRandomElevatorId(Integer numberOfElevators) {
