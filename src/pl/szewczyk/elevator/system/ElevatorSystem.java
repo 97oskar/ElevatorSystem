@@ -5,19 +5,19 @@ import java.util.ArrayList;
 
 public class ElevatorSystem {
     private Integer numberOfFloors;
-    private Controler controler;
+    private DistributingOrders ordersDistributor;
     private ArrayList<Elevator> elevators = new ArrayList<Elevator>();
 
     public ElevatorSystem(Integer numberOfElevators, Integer numberOfFloors, DistributingOrders distributionStrategy) {
         this.numberOfFloors = numberOfFloors;
-        this.controler = new Controler(distributionStrategy);
+        this.ordersDistributor= distributionStrategy;
         for (int id = 0; id < numberOfElevators; id++)
             elevators.add(new Elevator(id, 0));
     }
 
     public void pickUp(Integer floorNumber, Integer direction) {
         ElevatorOrder newOrder = new ElevatorOrder(floorNumber, direction);
-        elevators.get(controler.chooseElevatorToOrder(status(), newOrder)).receiveOrder(newOrder);
+        elevators.get(ordersDistributor.distributeOrder(status(), newOrder)).receiveOrder(newOrder);
     }
 
     public void update(Integer elevatorId, Integer currentFloor, Integer targetFloor) {

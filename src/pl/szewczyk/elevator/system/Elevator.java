@@ -19,10 +19,10 @@ public class Elevator {
     }
 
     public ElevatorOrder getCurrentOrder() {
-        if(orders.isEmpty())
+        if (commands.isEmpty())
             return null;
 
-        return orders.peek();
+        return commands.peek();
     }
 
     public ElevatorStatus getStatus() {
@@ -33,7 +33,7 @@ public class Elevator {
     private Integer currentFloor;
     private Stateful state;
 
-    private Deque<ElevatorOrder> orders = new LinkedList<ElevatorOrder>();
+    private Deque<ElevatorOrder> commands = new LinkedList<ElevatorOrder>();
 
     public Elevator(int Id, int initialFloor) {
         this.id = Id;
@@ -58,7 +58,7 @@ public class Elevator {
     }
 
     public void addOrder(ElevatorOrder newOrder) {
-        this.orders.addLast(newOrder);
+        this.commands.addLast(newOrder);
     }
 
     public void receiveOrder(ElevatorOrder newOrder) {
@@ -66,13 +66,13 @@ public class Elevator {
     }
 
     public void removeCurrentOrder() {
-        orders.pop();
+        commands.pop();
         adjustStateToNextStep();
     }
 
     public void updateState(Integer currentFloor, Integer targetFloor) {
         this.currentFloor = currentFloor;
-        this.orders.addFirst(new ElevatorOrder(targetFloor, true));
+        this.commands.addFirst(new ElevatorOrder(targetFloor, true));
     }
 
     public Integer receiveTargetFloorFromInput() {
@@ -84,9 +84,9 @@ public class Elevator {
     }
 
     private void adjustStateToNextStep() {
-        if(orders.isEmpty())
+        if (commands.isEmpty())
             changeState(new IdleState(this));
-        else if(currentFloor < orders.peek().getTargetFloor())
+        else if (currentFloor < commands.peek().getTargetFloor())
             changeState(new MoveUpState(this));
         else
             changeState(new MoveDownState(this));
