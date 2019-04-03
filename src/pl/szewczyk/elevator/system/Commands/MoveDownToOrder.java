@@ -15,7 +15,12 @@ public class MoveDownToOrder implements Orderable {
     public void execute(Elevator elevator) {
         elevator.removeCurrentCommand();
         Integer targetFloor = elevator.receiveTargetFloorFromInput();
-        elevator.receiveCommand(new GoToFinalFloor(targetFloor));
+
+        if(elevator.getCurrentFloor() < targetFloor)
+            elevator.receiveCommand(new MoveUpToTarget(targetFloor));
+        else
+            elevator.receiveCommand(new MoveDownToTarget(targetFloor));
+
         elevator.updateState();
     }
 
