@@ -17,7 +17,7 @@ public class MoveToOrder implements Orderable {
         elevator.removeCurrentCommand();
         Integer targetFloor = elevator.receiveTargetFloorFromInput();
 
-        elevator.receiveCommand(new MoveToTarget(targetFloor));
+        elevator.receiveNewCommand(new MoveToTarget(targetFloor));
 
         elevator.updateState();
     }

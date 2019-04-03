@@ -18,7 +18,7 @@ public class AcceptingOrderState implements Stateful {
     }
 
     @Override
-    public void receiveCommand(Orderable newOrder) {}
+    public void receiveCommand(Orderable newCommand) {}
 
     @Override
     public ElevatorStatus getStatus() {

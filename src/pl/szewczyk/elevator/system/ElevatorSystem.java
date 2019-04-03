@@ -12,7 +12,7 @@ public class ElevatorSystem {
         this.numberOfFloors = numberOfFloors;
         this.ordersDistributor = distributionStrategy;
         for (int id = 0; id < numberOfElevators; id++)
-            elevators.add(new Elevator(id, 0));
+            elevators.add(new Elevator(id, 0, numberOfFloors));
     }
 
     public void pickUp(Integer floorNumber, Integer direction) {

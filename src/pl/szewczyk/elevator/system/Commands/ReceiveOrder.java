@@ -8,7 +8,7 @@ public class ReceiveOrder implements Orderable {
     @Override
     public void execute(Elevator elevator) {
         Integer targetFloor = elevator.receiveTargetFloorFromInput();
-        elevator.receiveCommand(new MoveToTarget(targetFloor));
+        elevator.receiveNewCommand(new MoveToTarget(targetFloor));
         elevator.updateState();
     }
 

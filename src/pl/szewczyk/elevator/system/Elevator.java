@@ -4,18 +4,19 @@ import pl.szewczyk.elevator.system.States.IdleState;
 
 import java.util.Deque;
 import java.util.LinkedList;
-import java.util.Scanner;
 
 
 public class Elevator {
     private Integer id;
     private Integer currentFloor;
+    private InputValidator inputValidator;
     private Stateful state;
     private Deque<Orderable> commands = new LinkedList<Orderable>();
 
-    public Elevator(int Id, int initialFloor) {
+    public Elevator(int Id, int initialFloor, int numberOfFloors) {
         this.id = Id;
         this.currentFloor = initialFloor;
+        this.inputValidator = new InputValidator(numberOfFloors);
         this.state = new IdleState(this);
     }
 
@@ -43,27 +44,27 @@ public class Elevator {
     }
 
     public void moveUp() {
-        currentFloor++;
+        ++currentFloor;
     }
 
     public void moveDown() {
-        currentFloor--;
+        --currentFloor;
     }
 
     public void changeState(Stateful newState) {
         this.state = newState;
     }
 
-    public void receiveCommand(Orderable newOrder) {
-        state.receiveCommand(newOrder);
-        this.commands.addLast(newOrder);
+    public void receiveNewCommand(Orderable newCommand) {
+        state.receiveCommand(newCommand);
+        this.commands.addLast(newCommand);
     }
 
     public void removeCurrentCommand() {
         commands.pop();
     }
 
-    public void updateState() {
+    public void updateState() {                                     //!!
         if(commands.isEmpty())
             changeState(new IdleState(this));
         else {
@@ -72,11 +73,8 @@ public class Elevator {
     }
 
     public Integer receiveTargetFloorFromInput() {
-        Scanner scan = new Scanner(System.in);
         System.out.println("[" + id + "] " + "You're on " + currentFloor + " floor. Choose target: ");
-        int targetFloor = scan.nextInt();
-
-        return targetFloor;
+        return inputValidator.getInteger(currentFloor);
     }
 
 }
