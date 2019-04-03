@@ -9,7 +9,7 @@ public class Main {
         ElevatorSystem elevatorSystem = new ElevatorSystem(1, 10, new RandomDistribution());
 
         elevatorSystem.pickUp(2, 1);
-        elevatorSystem.pickUp(10, -1);
+        elevatorSystem.pickUp(9, -1);
 
         for(int i=0; i<50; i++) {
             System.out.println("###########");

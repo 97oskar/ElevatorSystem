@@ -4,4 +4,5 @@ public interface Orderable {
     public void execute(Elevator elevator);
     public void setState(Elevator elevator);
     public Integer getFloorNumber();
+    public void setFloorNumber(Integer floorNumber);
 }

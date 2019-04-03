@@ -33,4 +33,10 @@ public class MoveToTarget implements Orderable {
     @Override
     public Integer getFloorNumber() {
         return floorNumber;
-    }}
+    }
+
+    @Override
+    public void setFloorNumber(Integer floorNumber) {
+        this.floorNumber = floorNumber;
+    }
+}

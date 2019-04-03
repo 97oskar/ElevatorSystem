@@ -64,6 +64,10 @@ public class Elevator {
         this.commands.addFirst(command);
     }
 
+    public void addCommandAsLast(Orderable command) {
+        this.commands.addLast(command);
+    }
+
     public void removeExecutedCommand() {
         commands.pop();
     }
