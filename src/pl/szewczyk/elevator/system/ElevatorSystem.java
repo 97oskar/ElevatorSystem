@@ -19,10 +19,6 @@ public class ElevatorSystem {
         ordersDistributor.distributeOrder(elevators, floorNumber, direction);
     }
 
-    public void update(Integer elevatorId, Integer currentFloor, Integer targetFloor) {
-        elevators.get(elevatorId).updateState(currentFloor, targetFloor);
-    }
-
     public void step() {
         for (Elevator elevator : elevators)
             elevator.move();

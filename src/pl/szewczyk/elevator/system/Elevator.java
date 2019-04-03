@@ -71,11 +71,6 @@ public class Elevator {
         }
     }
 
-    public void updateState(Integer currentFloor, Integer targetFloor) {      //TO DO
-//        this.currentFloor = currentFloor;
-//        this.Commands.addFirst(new ElevatorOrder(targetFloor, true));
-    }
-
     public Integer receiveTargetFloorFromInput() {
         Scanner scan = new Scanner(System.in);
         System.out.println("[" + id + "] " + "You're on " + currentFloor + " floor. Choose target: ");
