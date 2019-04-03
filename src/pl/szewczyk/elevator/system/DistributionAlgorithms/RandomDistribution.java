@@ -1,4 +1,8 @@
-package pl.szewczyk.elevator.system;
+package pl.szewczyk.elevator.system.DistributionAlgorithms;
+
+import pl.szewczyk.elevator.system.DistributingOrders;
+import pl.szewczyk.elevator.system.ElevatorOrder;
+import pl.szewczyk.elevator.system.ElevatorStatus;
 
 import java.util.ArrayList;
 

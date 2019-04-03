@@ -1,5 +1,9 @@
 package pl.szewczyk.elevator.system;
 
+import pl.szewczyk.elevator.system.States.IdleState;
+import pl.szewczyk.elevator.system.States.MoveDownState;
+import pl.szewczyk.elevator.system.States.MoveUpState;
+
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Scanner;
@@ -21,19 +25,20 @@ public class Elevator {
         return orders.peek();
     }
 
+    public ElevatorStatus getStatus() {
+        return state.getStatus();
+    }
+
     private Integer id;
     private Integer currentFloor;
     private Stateful state;
+
     private Deque<ElevatorOrder> orders = new LinkedList<ElevatorOrder>();
 
     public Elevator(int Id, int initialFloor) {
         this.id = Id;
         this.currentFloor = initialFloor;
         this.state = new IdleState(this);
-    }
-
-    public ElevatorStatus getStatus() {
-        return state.getStatus();
     }
 
     public void move() {
@@ -52,16 +57,17 @@ public class Elevator {
         this.state = newState;
     }
 
-    private boolean isTargetFloorReached() {
-        return orders.peek().getTargetFloor().equals(currentFloor);
+    public void addOrder(ElevatorOrder newOrder) {
+        this.orders.addLast(newOrder);
     }
 
     public void receiveOrder(ElevatorOrder newOrder) {
         state.receiveOrder(newOrder);
     }
 
-    public void addOrder(ElevatorOrder newOrder) {
-        this.orders.addLast(newOrder);
+    public void removeCurrentOrder() {
+        orders.pop();
+        adjustStateToNextStep();
     }
 
     public void updateState(Integer currentFloor, Integer targetFloor) {
@@ -75,12 +81,6 @@ public class Elevator {
         int targetFloor = scan.nextInt();
 
         return targetFloor;
-    }
-
-    public void removeCurrentOrder() {
-        orders.pop();
-
-        adjustStateToNextStep();
     }
 
     private void adjustStateToNextStep() {

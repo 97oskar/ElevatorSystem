@@ -1,4 +1,11 @@
-package pl.szewczyk.elevator.system;
+package pl.szewczyk.elevator.system.States;
+
+import pl.szewczyk.elevator.system.Elevator;
+import pl.szewczyk.elevator.system.ElevatorOrder;
+import pl.szewczyk.elevator.system.ElevatorStatus;
+import pl.szewczyk.elevator.system.Stateful;
+import pl.szewczyk.elevator.system.States.MoveDownState;
+import pl.szewczyk.elevator.system.States.MoveUpState;
 
 public class IdleState implements Stateful {
     private Elevator elevator;

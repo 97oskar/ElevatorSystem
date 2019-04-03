@@ -1,4 +1,9 @@
-package pl.szewczyk.elevator.system;
+package pl.szewczyk.elevator.system.States;
+
+import pl.szewczyk.elevator.system.Elevator;
+import pl.szewczyk.elevator.system.ElevatorOrder;
+import pl.szewczyk.elevator.system.ElevatorStatus;
+import pl.szewczyk.elevator.system.Stateful;
 
 public class MoveDownState implements Stateful {
     private Elevator elevator;
@@ -8,7 +13,7 @@ public class MoveDownState implements Stateful {
     }
 
     @Override
-    public void move() {
+    public void move() {                            //!!!
         elevator.moveDown();
 
         if(isTargetFloorReached()) {
