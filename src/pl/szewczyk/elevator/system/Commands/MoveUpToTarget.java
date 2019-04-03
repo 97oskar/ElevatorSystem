@@ -14,6 +14,7 @@ public class MoveUpToTarget implements Orderable {
     @Override
     public void execute(Elevator elevator) {
         elevator.removeCurrentCommand();
+        elevator.updateState();
     }
 
     @Override

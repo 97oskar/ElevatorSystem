@@ -24,6 +24,6 @@ public class RandomDistribution implements DistributingOrders {
     }
 
     private Integer getRandomElevatorId(Integer numberOfElevators) {
-        return (int)Math.random() * numberOfElevators;
+        return (int)(Math.random() * numberOfElevators);
     }
 }
