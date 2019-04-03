@@ -18,8 +18,7 @@ public class ElevatorSystem {
     }
 
     public void pickUp(Integer floorNumber, Integer direction) {
-        Orderable newOrder = new ElevatorOrder(floorNumber, direction);
-        elevators.get(ordersDistributor.distributeOrder(status(), newOrder)).receiveOrder(newOrder);
+        ordersDistributor.distributeOrder(elevators, floorNumber, direction);
     }
 
     public void update(Integer elevatorId, Integer currentFloor, Integer targetFloor) {

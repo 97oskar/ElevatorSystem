@@ -2,23 +2,26 @@ package pl.szewczyk.elevator.system.Commands;
 
 import pl.szewczyk.elevator.system.Elevator;
 import pl.szewczyk.elevator.system.Orderable;
+import pl.szewczyk.elevator.system.States.MoveUpState;
 
-public class GoToFinalFloor implements Orderable {
-
+public class MoveUpToOrder implements Orderable {
     private Integer floorNumber;
 
-    public GoToFinalFloor(Integer floorNumber) {
+    public MoveUpToOrder(Integer floorNumber) {
         this.floorNumber = floorNumber;
     }
 
     @Override
     public void execute(Elevator elevator) {
         elevator.removeCurrentCommand();
+        Integer targetFloor = elevator.receiveTargetFloorFromInput();
+        elevator.receiveCommand(new GoToFinalFloor(targetFloor));
+        elevator.updateState();
     }
 
     @Override
     public void setState(Elevator elevator) {
-
+        elevator.changeState(new MoveUpState(elevator));
     }
 
     @Override

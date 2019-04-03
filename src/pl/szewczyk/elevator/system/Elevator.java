@@ -10,6 +10,17 @@ import java.util.Scanner;
 
 
 public class Elevator {
+    private Integer id;
+    private Integer currentFloor;
+    private Stateful state;
+    private Deque<Orderable> commands = new LinkedList<Orderable>();
+
+    public Elevator(int Id, int initialFloor) {
+        this.id = Id;
+        this.currentFloor = initialFloor;
+        this.state = new IdleState(this);
+    }
+
     public Integer getId() {
         return id;
     }
@@ -18,27 +29,15 @@ public class Elevator {
         return currentFloor;
     }
 
+    public ElevatorStatus getStatus() {
+        return state.getStatus();
+    }
+
     public Orderable getCurrentCommand() {
         if (commands.isEmpty())
             return null;
 
         return commands.peek();
-    }
-
-    public ElevatorStatus getStatus() {
-        return state.getStatus();
-    }
-
-    private Integer id;
-    private Integer currentFloor;
-    private Stateful state;
-
-    private Deque<Orderable> commands = new LinkedList<Orderable>();
-
-    public Elevator(int Id, int initialFloor) {
-        this.id = Id;
-        this.currentFloor = initialFloor;
-        this.state = new IdleState(this);
     }
 
     public void move() {
@@ -57,14 +56,21 @@ public class Elevator {
         this.state = newState;
     }
 
-    public void receiveOrder(Orderable newOrder) {
-        state.receiveOrder(newOrder);
+    public void receiveCommand(Orderable newOrder) {
+        state.receiveCommand(newOrder);
         this.commands.addLast(newOrder);
     }
 
-    public void removeCurrentOrder() {                  //!!!
+    public void removeCurrentCommand() {
         commands.pop();
-        adjustStateToNextStep();
+    }
+
+    public void updateState() {
+        if(commands.isEmpty())
+            changeState(new IdleState(this));
+        else {
+            commands.peek().setState(this);
+        }
     }
 
     public void updateState(Integer currentFloor, Integer targetFloor) {      //TO DO
@@ -80,12 +86,4 @@ public class Elevator {
         return targetFloor;
     }
 
-    private void adjustStateToNextStep() {
-        if (commands.isEmpty())
-            changeState(new IdleState(this));
-        else if (currentFloor < commands.peek().getFloorNumber())
-            changeState(new MoveUpState(this));
-        else
-            changeState(new MoveDownState(this));
-    }
 }

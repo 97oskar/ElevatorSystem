@@ -12,7 +12,4 @@ public class Controler {
         this.distributionStrategy = distributionStrategy;
     }
 
-    public Integer chooseElevatorToOrder(ArrayList<ElevatorStatus> elevatorStatuses, ElevatorOrder order) {
-        return distributionStrategy.distributeOrder(elevatorStatuses, order);
-    }
 }

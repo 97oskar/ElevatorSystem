@@ -1,21 +1,12 @@
 package pl.szewczyk.elevator.system.Commands;
 
-
 import pl.szewczyk.elevator.system.Elevator;
 import pl.szewczyk.elevator.system.Orderable;
+import pl.szewczyk.elevator.system.States.AcceptingOrderState;
 
-public class ElevatorOrder implements Orderable {
-    private Integer floorNumber;
-    private Integer direction;
-
-    public ElevatorOrder(Integer floorNumber, Integer direction) {
-        this.floorNumber = floorNumber;
-        this.direction = direction;
-    }
-
+public class ReceiveOrder implements Orderable {
     @Override
     public void execute(Elevator elevator) {
-        elevator.removeCurrentCommand();
         Integer targetFloor = elevator.receiveTargetFloorFromInput();
         elevator.receiveCommand(new GoToFinalFloor(targetFloor));
         elevator.updateState();
@@ -23,11 +14,11 @@ public class ElevatorOrder implements Orderable {
 
     @Override
     public void setState(Elevator elevator) {
-
+        elevator.changeState(new AcceptingOrderState(elevator));
     }
 
     @Override
     public Integer getFloorNumber() {
-        return floorNumber;
+        return null;
     }
 }

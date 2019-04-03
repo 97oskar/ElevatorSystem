@@ -17,7 +17,7 @@ public class MoveDownState implements Stateful {
     }
 
     @Override
-    public void receiveOrder(Orderable newOrder) {
+    public void receiveCommand(Orderable newOrder) {
     }
 
     @Override
