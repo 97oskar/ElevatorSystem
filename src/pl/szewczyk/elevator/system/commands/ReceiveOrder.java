@@ -1,8 +1,8 @@
-package pl.szewczyk.elevator.system.Commands;
+package pl.szewczyk.elevator.system.commands;
 
 import pl.szewczyk.elevator.system.Elevator;
 import pl.szewczyk.elevator.system.Orderable;
-import pl.szewczyk.elevator.system.States.ReceiveOrderState;
+import pl.szewczyk.elevator.system.states.ReceiveOrderState;
 
 public class ReceiveOrder implements Orderable {
     private Integer floorNumber;

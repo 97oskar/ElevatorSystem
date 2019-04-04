@@ -1,35 +1,28 @@
-package pl.szewczyk.elevator.system.Commands;
+package pl.szewczyk.elevator.system.commands;
 
 import pl.szewczyk.elevator.system.Elevator;
 import pl.szewczyk.elevator.system.Orderable;
 import pl.szewczyk.elevator.system.Stateful;
-import pl.szewczyk.elevator.system.States.MoveDownState;
-import pl.szewczyk.elevator.system.States.MoveUpState;
-import pl.szewczyk.elevator.system.States.ReceiveOrderState;
+import pl.szewczyk.elevator.system.states.MoveDownState;
+import pl.szewczyk.elevator.system.states.MoveUpState;
+import pl.szewczyk.elevator.system.states.ReceiveOrderState;
 
-public class MoveToOrder implements Orderable {
+public class MoveToTarget implements Orderable {
     private Integer floorNumber;
-    private Integer direction;
-    private Orderable addingOrderCommand;
 
-
-    public MoveToOrder(Integer floorNumber, Integer direction, Orderable addingOrderCommand) {
+    public MoveToTarget(Integer floorNumber) {
         this.floorNumber = floorNumber;
-        this.direction = direction;
-        this.addingOrderCommand = addingOrderCommand;
     }
 
     @Override
     public void execute(Elevator elevator) {
         elevator.removeExecutedCommand();
-        addingOrderCommand.execute(elevator);
         elevator.updateState();
     }
 
     @Override
     public void setElevatorState(Elevator elevator) {
         elevator.changeState(selectState(elevator));
-        elevator.setNextDirection(direction);
     }
 
     @Override
@@ -39,7 +32,7 @@ public class MoveToOrder implements Orderable {
 
     @Override
     public void setFloorNumber(Integer floorNumber) {
-
+        this.floorNumber = floorNumber;
     }
 
     private Stateful selectState(Elevator elevator) {

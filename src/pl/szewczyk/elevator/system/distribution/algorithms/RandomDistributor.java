@@ -1,6 +1,6 @@
-package pl.szewczyk.elevator.system.DistributionAlgorithms;
+package pl.szewczyk.elevator.system.distribution.algorithms;
 
-import pl.szewczyk.elevator.system.Commands.*;
+import pl.szewczyk.elevator.system.commands.*;
 import pl.szewczyk.elevator.system.DistributingOrders;
 import pl.szewczyk.elevator.system.Elevator;
 

@@ -1,6 +1,6 @@
 package pl.szewczyk.elevator.system;
 
-import pl.szewczyk.elevator.system.States.IdleState;
+import pl.szewczyk.elevator.system.states.IdleState;
 
 import java.util.Deque;
 import java.util.LinkedList;

@@ -1,4 +1,4 @@
-package pl.szewczyk.elevator.system.States;
+package pl.szewczyk.elevator.system.states;
 
 import pl.szewczyk.elevator.system.*;
 

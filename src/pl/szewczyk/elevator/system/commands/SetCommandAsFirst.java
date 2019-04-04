@@ -1,4 +1,4 @@
-package pl.szewczyk.elevator.system.Commands;
+package pl.szewczyk.elevator.system.commands;
 
 import pl.szewczyk.elevator.system.Elevator;
 import pl.szewczyk.elevator.system.Orderable;

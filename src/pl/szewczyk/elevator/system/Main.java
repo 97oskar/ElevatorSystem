@@ -1,6 +1,6 @@
 package pl.szewczyk.elevator.system;
 
-import pl.szewczyk.elevator.system.DistributionAlgorithms.PrioritizingSameDirectionDistributor;
+import pl.szewczyk.elevator.system.distribution.algorithms.PrioritizingSameDirectionDistributor;
 
 
 public class Main {
