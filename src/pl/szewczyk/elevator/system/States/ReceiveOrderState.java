@@ -2,7 +2,6 @@ package pl.szewczyk.elevator.system.States;
 
 import pl.szewczyk.elevator.system.Elevator;
 import pl.szewczyk.elevator.system.ElevatorStatus;
-import pl.szewczyk.elevator.system.Orderable;
 import pl.szewczyk.elevator.system.Stateful;
 
 public class ReceiveOrderState implements Stateful {
@@ -16,9 +15,6 @@ public class ReceiveOrderState implements Stateful {
     public void takeStep() {
         elevator.getCurrentCommand().execute(elevator);
     }
-
-    @Override
-    public void receiveNewCommand(Orderable newCommand) {}
 
     @Override
     public ElevatorStatus getStatus() {

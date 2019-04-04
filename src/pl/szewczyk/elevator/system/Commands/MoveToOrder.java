@@ -8,18 +8,18 @@ import pl.szewczyk.elevator.system.States.ReceiveOrderState;
 
 public class MoveToOrder implements Orderable {
     private Integer floorNumber;
-    private Orderable receiveOrderCommand;
+    private Orderable addingOrderCommand;
 
 
-    public MoveToOrder(Integer floorNumber, Orderable receiveOrderCommand) {
+    public MoveToOrder(Integer floorNumber, Orderable addingOrderCommand) {
         this.floorNumber = floorNumber;
-        this.receiveOrderCommand = receiveOrderCommand;
+        this.addingOrderCommand = addingOrderCommand;
     }
 
     @Override
     public void execute(Elevator elevator) {
         elevator.removeExecutedCommand();
-        elevator.addCommandAsFirst(receiveOrderCommand);
+        addingOrderCommand.execute(elevator);
         elevator.updateState();
     }
 
@@ -40,6 +40,7 @@ public class MoveToOrder implements Orderable {
 
     @Override
     public void setFloorNumber(Integer floorNumber) {
-        this.floorNumber = floorNumber;
+
     }
+
 }

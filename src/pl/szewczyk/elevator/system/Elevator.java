@@ -49,8 +49,8 @@ public class Elevator {
     }
 
     public void receiveNewCommand(Orderable command) {
-        state.receiveNewCommand(command);
-        this.commands.addLast(command);                         //TO DO
+        command.execute(this);
+        updateState();
     }
 
     public void addCommandAsFirst(Orderable command) {
@@ -69,7 +69,7 @@ public class Elevator {
         this.state = newState;
     }
 
-    public void updateState() {                                 //TO DO
+    public void updateState() {                    
         if(commands.isEmpty())
             changeState(new IdleState(this));
         else {

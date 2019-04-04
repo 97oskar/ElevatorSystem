@@ -2,7 +2,6 @@ package pl.szewczyk.elevator.system.Commands;
 
 import pl.szewczyk.elevator.system.Elevator;
 import pl.szewczyk.elevator.system.Orderable;
-import pl.szewczyk.elevator.system.States.IdleState;
 import pl.szewczyk.elevator.system.States.MoveDownState;
 import pl.szewczyk.elevator.system.States.MoveUpState;
 import pl.szewczyk.elevator.system.States.ReceiveOrderState;
@@ -39,4 +38,5 @@ public class MoveToTarget implements Orderable {
     public void setFloorNumber(Integer floorNumber) {
         this.floorNumber = floorNumber;
     }
+
 }

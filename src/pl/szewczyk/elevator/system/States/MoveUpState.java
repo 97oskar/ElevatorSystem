@@ -18,10 +18,6 @@ public class MoveUpState implements Stateful {
     }
 
     @Override
-    public void receiveNewCommand(Orderable newCommand) {
-    }
-
-    @Override
     public ElevatorStatus getStatus() {
         return new ElevatorStatus(elevator.getId(), elevator.getCurrentFloor(), elevator.getCurrentCommand().getFloorNumber());
     }
