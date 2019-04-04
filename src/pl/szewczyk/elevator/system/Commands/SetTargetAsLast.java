@@ -3,16 +3,16 @@ package pl.szewczyk.elevator.system.Commands;
 import pl.szewczyk.elevator.system.Elevator;
 import pl.szewczyk.elevator.system.Orderable;
 
-public class SetOrderAsFirst implements Orderable {
+public class SetTargetAsLast implements Orderable {
     private Integer floorNumber;
 
     @Override
     public void execute(Elevator elevator) {
-        elevator.addCommandAsFirst(new MoveToTarget(floorNumber));
+        elevator.addCommandAsLast(new MoveToTarget(floorNumber));
     }
 
     @Override
-    public void setState(Elevator elevator) {}
+    public void setElevatorState(Elevator elevator) {}
 
     @Override
     public Integer getFloorNumber() {

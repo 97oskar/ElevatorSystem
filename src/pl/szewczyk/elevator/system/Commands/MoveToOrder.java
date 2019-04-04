@@ -24,7 +24,7 @@ public class MoveToOrder implements Orderable {
     }
 
     @Override
-    public void setState(Elevator elevator) {                           //TO DO
+    public void setElevatorState(Elevator elevator) {                           //TO DO
         if(elevator.getCurrentFloor().equals(floorNumber))
             elevator.changeState(new ReceiveOrderState(elevator));
         else if(elevator.getCurrentFloor() < floorNumber)

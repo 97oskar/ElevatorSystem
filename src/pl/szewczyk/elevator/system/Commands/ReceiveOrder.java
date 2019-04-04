@@ -24,7 +24,7 @@ public class ReceiveOrder implements Orderable {
     }
 
     @Override
-    public void setState(Elevator elevator) {
+    public void setElevatorState(Elevator elevator) {
         elevator.changeState(new ReceiveOrderState(elevator));
     }
 

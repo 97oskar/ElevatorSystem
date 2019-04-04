@@ -22,7 +22,7 @@ public class ElevatorSystem {
 
     public void step() {
         for (Elevator elevator : elevators)
-            elevator.move();
+            elevator.takeStep();
     }
 
     public ArrayList<ElevatorStatus> status() {

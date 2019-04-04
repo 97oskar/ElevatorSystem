@@ -13,12 +13,12 @@ public class ReceiveOrderState implements Stateful {
     }
 
     @Override
-    public void move() {
+    public void takeStep() {
         elevator.getCurrentCommand().execute(elevator);
     }
 
     @Override
-    public void receiveCommand(Orderable newCommand) {}
+    public void receiveNewCommand(Orderable newCommand) {}
 
     @Override
     public ElevatorStatus getStatus() {

@@ -28,16 +28,16 @@ public class Elevator {
         return currentFloor;
     }
 
-    public ElevatorStatus getStatus() {
-        return state.getStatus();
-    }
-
     public Orderable getCurrentCommand() {
         return commands.peek();
     }
 
-    public void move() {
-        state.move();
+    public ElevatorStatus getStatus() {
+        return state.getStatus();
+    }
+
+    public void takeStep() {
+        state.takeStep();
     }
 
     public void moveUp() {
@@ -48,12 +48,8 @@ public class Elevator {
         --currentFloor;
     }
 
-    public void changeState(Stateful newState) {
-        this.state = newState;
-    }
-
-    public void receiveCommand(Orderable command) {
-        state.receiveCommand(command);
+    public void receiveNewCommand(Orderable command) {
+        state.receiveNewCommand(command);
         this.commands.addLast(command);                         //TO DO
     }
 
@@ -69,11 +65,15 @@ public class Elevator {
         commands.pop();
     }
 
-    public void updateState() {                                 //TO DO 
+    public void changeState(Stateful newState) {
+        this.state = newState;
+    }
+
+    public void updateState() {                                 //TO DO
         if(commands.isEmpty())
             changeState(new IdleState(this));
         else {
-            commands.peek().setState(this);
+            commands.peek().setElevatorState(this);
         }
     }
 

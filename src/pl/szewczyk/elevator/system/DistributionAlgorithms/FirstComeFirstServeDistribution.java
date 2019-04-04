@@ -2,7 +2,7 @@ package pl.szewczyk.elevator.system.DistributionAlgorithms;
 
 import pl.szewczyk.elevator.system.Commands.MoveToOrder;
 import pl.szewczyk.elevator.system.Commands.ReceiveOrder;
-import pl.szewczyk.elevator.system.Commands.SetOrderAsFirst;
+import pl.szewczyk.elevator.system.Commands.SetTargetAsFirst;
 import pl.szewczyk.elevator.system.DistributingOrders;
 import pl.szewczyk.elevator.system.Elevator;
 import pl.szewczyk.elevator.system.ElevatorStatus;
@@ -19,10 +19,10 @@ public class FirstComeFirstServeDistribution implements DistributingOrders {
         Elevator chosenElevator = findFreeElevator(elevators);
 
         if(chosenElevator != null)
-            chosenElevator.receiveCommand(new MoveToOrder(floorNumber, new ReceiveOrder(floorNumber, new SetOrderAsFirst())));
+            chosenElevator.receiveNewCommand(new MoveToOrder(floorNumber, new ReceiveOrder(floorNumber, new SetTargetAsFirst())));
         else
             findNearestElevator(elevators, floorNumber)
-                    .receiveCommand(new MoveToOrder(floorNumber, new ReceiveOrder(floorNumber, new SetOrderAsFirst())));
+                    .receiveNewCommand(new MoveToOrder(floorNumber, new ReceiveOrder(floorNumber, new SetTargetAsFirst())));
     }
 
     private Elevator findFreeElevator(ArrayList<Elevator> elevators) {

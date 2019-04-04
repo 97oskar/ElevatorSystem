@@ -21,7 +21,7 @@ public class MoveToTarget implements Orderable {
     }
 
     @Override
-    public void setState(Elevator elevator) {
+    public void setElevatorState(Elevator elevator) {
         if(elevator.getCurrentFloor().equals(floorNumber))
             elevator.changeState(new ReceiveOrderState(elevator));
         else if(elevator.getCurrentFloor() < floorNumber)

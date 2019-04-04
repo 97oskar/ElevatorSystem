@@ -10,7 +10,7 @@ public class MoveUpState implements Stateful {
     }
 
     @Override
-    public void move() {
+    public void takeStep() {
         elevator.moveUp();
 
         if (isTargetFloorReached())
@@ -18,7 +18,7 @@ public class MoveUpState implements Stateful {
     }
 
     @Override
-    public void receiveCommand(Orderable newCommand) {
+    public void receiveNewCommand(Orderable newCommand) {
     }
 
     @Override
