@@ -13,17 +13,18 @@ public class ElevatorSystem {
         this.ordersDistributor = distributionStrategy;
 
         for (int id = 0; id < numberOfElevators; id++)
-            elevators.add(new Elevator(id, 0, numberOfFloors));
+            elevators.add(new Elevator(id, 0));
     }
 
     public void run() {
         while(true) {
             System.out.println("--------------------------");
+            System.out.println("Id  Location  Target");
             for(ElevatorStatus status : status())
                 System.out.println(status);
             System.out.println("--------------------------");
-            System.out.println("Order elevator:  pickup <floor number> <direction>");
-            System.out.println("Next step: s");
+            System.out.println("Order elevator:  \"pickup <floor number> <direction>\"");
+            System.out.println("Next step:       \"s\"");
             System.out.println("Insert operation:");
 
             String[] command = InputValidator.getString();

@@ -24,5 +24,5 @@ public class SetCommandAsFirst implements Orderable {
     }
 
     @Override
-    public void setFloorNumber(Integer floorNumber) {}
+    public void setFloorNumber(Integer floorNumber) { }
 }

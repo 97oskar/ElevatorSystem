@@ -13,7 +13,7 @@ public class Elevator {
     private Integer nextDirection;
     private Deque<Orderable> commands = new LinkedList<Orderable>();
 
-    public Elevator(int Id, int initialFloor, int numberOfFloors) {
+    public Elevator(int Id, int initialFloor) {
         this.id = Id;
         this.currentFloor = initialFloor;
         this.state = new IdleState(this);

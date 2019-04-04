@@ -20,6 +20,6 @@ public class ElevatorStatus {
     }
 
     public String toString() {
-        return "[" + elevatorID + "] | " + currentFloor + " | " + " | " + targetFloor + " |";
+        return "[" + elevatorID + "]  | " + currentFloor + " | " + "  | " + targetFloor + " |";
     }
 }

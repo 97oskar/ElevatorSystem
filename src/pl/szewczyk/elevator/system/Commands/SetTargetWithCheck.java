@@ -13,11 +13,7 @@ public class SetTargetWithCheck implements Orderable {
             Integer currentFloor = elevator.getCurrentFloor();
             Integer currentDirection = (int) Math.signum(targetFloor - currentFloor);
 
-            if (currentDirection.equals(1) && floorNumber < targetFloor)
-                elevator.addCommandAsFirst(new MoveToTarget(floorNumber));
-            else if (currentDirection.equals(1))
-                elevator.addCommandAsLast(new MoveToTarget(floorNumber));
-            else if (floorNumber > targetFloor)
+            if(shouldCommandBeAddedFirst(targetFloor, currentDirection))
                 elevator.addCommandAsFirst(new MoveToTarget(floorNumber));
             else
                 elevator.addCommandAsLast(new MoveToTarget(floorNumber));
@@ -25,6 +21,27 @@ public class SetTargetWithCheck implements Orderable {
             elevator.addCommandAsLast(new MoveToTarget(floorNumber));
         }
     }
+
+    private boolean shouldCommandBeAddedFirst(Integer targetFloor, Integer currentDirection) {
+        if(isMovingUpAndBelowTarget(targetFloor, currentDirection))
+            return true;
+        else if(isMovingUp(currentDirection))
+            return false;
+        else return !isBelowTarget(targetFloor);
+    }
+
+    private boolean isMovingUp(Integer currentDirection) {
+        return currentDirection.equals(1);
+    }
+
+    private boolean isMovingUpAndBelowTarget(Integer targetFloor, Integer currentDirection) {
+        return isMovingUp(currentDirection) && isBelowTarget(targetFloor);
+    }
+
+    private boolean isBelowTarget(Integer targetFloor) {
+        return floorNumber < targetFloor;
+    }
+
 
     @Override
     public void setElevatorState(Elevator elevator) {}
