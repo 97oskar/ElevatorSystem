@@ -9,14 +9,12 @@ import java.util.LinkedList;
 public class Elevator {
     private Integer id;
     private Integer currentFloor;
-    private InputValidator inputValidator;
     private Stateful state;
     private Deque<Orderable> commands = new LinkedList<Orderable>();
 
     public Elevator(int Id, int initialFloor, int numberOfFloors) {
         this.id = Id;
         this.currentFloor = initialFloor;
-        this.inputValidator = new InputValidator(numberOfFloors);
         this.state = new IdleState(this);
     }
 
@@ -79,7 +77,7 @@ public class Elevator {
 
     public Integer receiveTargetFloorFromInput() {
         System.out.println("\n[" + id + "] " + "You're on " + currentFloor + " floor. Choose target: ");
-        return inputValidator.getInteger(currentFloor);
+        return InputValidator.getInteger(currentFloor);
     }
 
 }
