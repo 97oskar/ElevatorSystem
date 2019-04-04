@@ -6,12 +6,12 @@ import pl.szewczyk.elevator.system.Elevator;
 
 import java.util.ArrayList;
 
-public class RandomDistribution implements DistributingOrders {
+public class RandomDistributor implements DistributingOrders {
 
     @Override
     public void distributeOrder(ArrayList<Elevator> elevators, Integer floorNumber, Integer direction) {
         Elevator chosenElevator = elevators.get(getRandomElevatorId(elevators.size()));
-        chosenElevator.receiveNewCommand(new SetCommandAsLast(new MoveToOrder(floorNumber,
+        chosenElevator.receiveNewCommand(new SetCommandAsLast(new MoveToOrder(floorNumber, direction,
                                          new SetCommandAsFirst(new ReceiveOrder(floorNumber, new SetTargetAsFirst())))));
     }
 

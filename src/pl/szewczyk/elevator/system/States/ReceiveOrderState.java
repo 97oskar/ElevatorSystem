@@ -18,6 +18,6 @@ public class ReceiveOrderState implements Stateful {
 
     @Override
     public ElevatorStatus getStatus() {
-        return new ElevatorStatus(elevator.getId(), elevator.getCurrentFloor(), null);
+        return new ElevatorStatus(elevator.getId(), elevator.getCurrentFloor(), elevator.getCurrentCommand().getFloorNumber());
     }
 }

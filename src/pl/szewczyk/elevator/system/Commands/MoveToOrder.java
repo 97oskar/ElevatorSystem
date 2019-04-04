@@ -9,11 +9,13 @@ import pl.szewczyk.elevator.system.States.ReceiveOrderState;
 
 public class MoveToOrder implements Orderable {
     private Integer floorNumber;
+    private Integer direction;
     private Orderable addingOrderCommand;
 
 
-    public MoveToOrder(Integer floorNumber, Orderable addingOrderCommand) {
+    public MoveToOrder(Integer floorNumber, Integer direction, Orderable addingOrderCommand) {
         this.floorNumber = floorNumber;
+        this.direction = direction;
         this.addingOrderCommand = addingOrderCommand;
     }
 
@@ -27,6 +29,7 @@ public class MoveToOrder implements Orderable {
     @Override
     public void setElevatorState(Elevator elevator) {
         elevator.changeState(selectState(elevator));
+        elevator.setNextDirection(direction);
     }
 
     @Override

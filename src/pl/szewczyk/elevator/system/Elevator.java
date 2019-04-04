@@ -10,6 +10,7 @@ public class Elevator {
     private Integer id;
     private Integer currentFloor;
     private Stateful state;
+    private Integer nextDirection;
     private Deque<Orderable> commands = new LinkedList<Orderable>();
 
     public Elevator(int Id, int initialFloor, int numberOfFloors) {
@@ -33,6 +34,10 @@ public class Elevator {
     public ElevatorStatus getStatus() {
         return state.getStatus();
     }
+
+    public Integer getNextDirection() {return nextDirection;}
+
+    public void setNextDirection(Integer nextDirection) {this.nextDirection = nextDirection;}
 
     public void takeStep() {
         state.takeStep();
