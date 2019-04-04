@@ -7,7 +7,7 @@ import pl.szewczyk.elevator.system.Elevator;
 import java.util.ArrayList;
 
 
-public class MyDistributor implements DistributingOrders {
+public class PrioritizingSameDirectionDistributor implements DistributingOrders {
     @Override
     public void distributeOrder(ArrayList<Elevator> elevators, Integer floorNumber, Integer direction) {
         ArrayList<Elevator> selectedElevators = new ArrayList<Elevator>();
