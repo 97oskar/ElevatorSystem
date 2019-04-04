@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Hello elevators. I will be your master");
 
-        ElevatorSystem elevatorSystem = new ElevatorSystem(1, 10, new FirstComeFirstServeDistribution());
+        ElevatorSystem elevatorSystem = new ElevatorSystem(3, 10, new FirstComeFirstServeDistribution());
 
         elevatorSystem.pickUp(2, 1);
         elevatorSystem.pickUp(9, -1);

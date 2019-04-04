@@ -69,7 +69,7 @@ public class Elevator {
         this.state = newState;
     }
 
-    public void updateState() {                    
+    public void updateState() {
         if(commands.isEmpty())
             changeState(new IdleState(this));
         else {
