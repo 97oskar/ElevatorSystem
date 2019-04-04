@@ -15,6 +15,10 @@ public class ElevatorStatus {
         return currentFloor;
     }
 
+    public Integer getTargetFloor() {
+        return targetFloor;
+    }
+
     public String toString() {
         return "[" + elevatorID + "] | " + currentFloor + " | " + " | " + targetFloor + " |";
     }

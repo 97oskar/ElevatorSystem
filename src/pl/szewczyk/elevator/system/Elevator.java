@@ -33,9 +33,6 @@ public class Elevator {
     }
 
     public Orderable getCurrentCommand() {
-        if (commands.isEmpty())
-            return null;
-
         return commands.peek();
     }
 
@@ -57,7 +54,7 @@ public class Elevator {
 
     public void receiveCommand(Orderable command) {
         state.receiveCommand(command);
-        this.commands.addLast(command);
+        this.commands.addLast(command);                         //TO DO
     }
 
     public void addCommandAsFirst(Orderable command) {
@@ -72,7 +69,7 @@ public class Elevator {
         commands.pop();
     }
 
-    public void updateState() {                                     //!!
+    public void updateState() {                                 //TO DO 
         if(commands.isEmpty())
             changeState(new IdleState(this));
         else {

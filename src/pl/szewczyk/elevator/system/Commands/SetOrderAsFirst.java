@@ -12,9 +12,7 @@ public class SetOrderAsFirst implements Orderable {
     }
 
     @Override
-    public void setState(Elevator elevator) {
-
-    }
+    public void setState(Elevator elevator) {}
 
     @Override
     public Integer getFloorNumber() {

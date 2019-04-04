@@ -13,7 +13,8 @@ public class MoveDownState implements Stateful {
     public void move() {
         elevator.moveDown();
 
-        if(isTargetFloorReached()) elevator.getCurrentCommand().execute(elevator);
+        if(isTargetFloorReached())
+            elevator.getCurrentCommand().execute(elevator);
     }
 
     @Override

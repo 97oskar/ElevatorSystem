@@ -14,7 +14,7 @@ public class IdleState implements Stateful {
     }
 
     @Override
-    public void receiveCommand(Orderable newCommand) {
+    public void receiveCommand(Orderable newCommand) {                                  //TO DO
         if (elevator.getStatus().getCurrentFloor() < newCommand.getFloorNumber())
             elevator.changeState(new MoveUpState(elevator));
         else
