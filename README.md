@@ -45,6 +45,20 @@ Used patterns:
 - State Design Pattern;
 - Command Design Pattern;
 
+That architecture makes the system robust. There is a possibility to make new commands, 
+states, and distribution algorithms without the need to change the implementation of 
+Elevator System or Elevator. You can simply make a new class of Command, 
+State or Distribution Algorithm and use it in the system.
+
+<h5>Distribution algorithm<h5>
+
+The algorithm selects a set of free elevators and a set of elevators that are going 
+to the same direction that the order declares. After that, it chooses the nearest 
+elevator from every set and compares their distances from the floor on which the order 
+occurred. It chooses elevator which is closest to the order and give it a commend "move to order". 
+If there are no elevators that are free, or that are going in the same direction, 
+the algorithm chooses the nearest elevator in the whole system. 
+
 <h5>How to run simulation<h5>
 
      In order to run simulation you must provide two arguments:
