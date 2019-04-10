@@ -15,35 +15,29 @@ class ElevatorSystemTest {
     }
 
     @Test
-    void arrayOfElevatorStatusesShouldBeNotEmpty() {
+    void shouldArrayOfElevatorStatusesNotBeEmpty() {
         assertFalse(elevatorSystem.status().isEmpty());
     }
 
     @Test
-    void lengthShouldBeEqualTo1() {
+    void shouldLengthBeEqualTo1() {
         assertEquals(1, elevatorSystem.status().size());
     }
 
     @Test
-    void targetFloorShouldBeEqualTo2() {
+    void shouldTargetFloorBeEqualTo2WhenElevatorOrderedTo2() {
         elevatorSystem.pickUp(2, 1);
         assertEquals(2, elevatorSystem.status().get(0).getTargetFloor());
     }
 
     @Test
-    void targetFloorShouldBeEqualtTo3() {
-        elevatorSystem.pickUp(3, -1);
-        assertEquals(3, elevatorSystem.status().get(0).getTargetFloor());
-    }
-
-    @Test
-    void targetFloorShouldBeNull() {
+    void shouldTargetFloorBeNullWhenElevatorOrderedAboveRange() {
         elevatorSystem.pickUp(5, -1);
         assertNull(elevatorSystem.status().get(0).getTargetFloor());
     }
 
     @Test
-    void tagetFloorShouldBeNull() {
+    void shouldTargetFloorBeNullWhenElevatorOrderedBelowRange() {
         elevatorSystem.pickUp(-1, 1);
         assertNull(elevatorSystem.status().get(0).getTargetFloor());
     }
