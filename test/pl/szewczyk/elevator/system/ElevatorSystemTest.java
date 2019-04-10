@@ -4,8 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pl.szewczyk.elevator.system.distribution.algorithms.RandomDistributor;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 class ElevatorSystemTest {
     ElevatorSystem elevatorSystem;
@@ -31,4 +30,21 @@ class ElevatorSystemTest {
         assertEquals(2, elevatorSystem.status().get(0).getTargetFloor());
     }
 
+    @Test
+    void targetFloorShouldBeEqualtTo3() {
+        elevatorSystem.pickUp(3, -1);
+        assertEquals(3, elevatorSystem.status().get(0).getTargetFloor());
+    }
+
+    @Test
+    void targetFloorShouldBeNull() {
+        elevatorSystem.pickUp(5, -1);
+        assertNull(elevatorSystem.status().get(0).getTargetFloor());
+    }
+
+    @Test
+    void tagetFloorShouldBeNull() {
+        elevatorSystem.pickUp(-1, 1);
+        assertNull(elevatorSystem.status().get(0).getTargetFloor());
+    }
 }

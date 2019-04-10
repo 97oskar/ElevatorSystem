@@ -38,7 +38,11 @@ public class ElevatorSystem {
     }
 
     public void pickUp(Integer floorNumber, Integer direction) {
-        ordersDistributor.distributeOrder(elevators, floorNumber, (int) Math.signum(direction));
+        try {
+            ordersDistributor.distributeOrder(elevators, floorNumber, (int) Math.signum(direction));
+        } catch(Exception e) {
+
+        }
     }
 
     public void step() {
