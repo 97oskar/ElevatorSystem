@@ -18,7 +18,7 @@ public class InputValidator {
         try {
             Integer value = scanner.nextInt();
 
-            return validateIntegerValue(value);
+            return validateFloorNumber(value);
         } catch (Exception e) {
             return defaultValue;
         }
@@ -28,9 +28,7 @@ public class InputValidator {
         try {
             String[] input = scanner.nextLine().trim().split(" ");
 
-            if(input.length > 1) {
-                input[1] = String.valueOf(validateIntegerValue(Integer.parseInt(input[1])));
-            }
+            validateCommandString(input);
 
             return  input;
         } catch (Exception e) {
@@ -39,7 +37,18 @@ public class InputValidator {
         }
     }
 
-    private static Integer validateIntegerValue(Integer value) {
+    private static void validateCommandString(String[] input) {
+        if(input.length > 2) {
+            input[1] = String.valueOf(validateFloorNumber(Integer.parseInt(input[1])));
+            input[2] = String.valueOf(validateDirectionValue(Integer.parseInt(input[2])));
+        }
+    }
+
+    private static Integer validateDirectionValue(Integer value) {
+        return (int) Math.signum(value);
+    }
+
+    public static Integer validateFloorNumber(Integer value) {
         if (0 > value)
             return 0;
         else if(value > maximumNumber)

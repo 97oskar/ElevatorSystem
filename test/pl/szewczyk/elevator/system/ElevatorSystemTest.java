@@ -12,6 +12,7 @@ class ElevatorSystemTest {
     @BeforeEach
     void setUp() {
         elevatorSystem = new ElevatorSystem(1, 3, new RandomDistributor());
+        InputValidator.setMaximumNumber(3);
     }
 
     @Test
@@ -31,20 +32,20 @@ class ElevatorSystemTest {
     }
 
     @Test
-    void shoultTargetFloorBeEqualtT0WhenElevatorOrderdTo0() {
+    void shouldTargetFloorBeEqualTo0WhenElevatorOrderedTo0() {
         elevatorSystem.pickUp(0, 1);
         assertEquals(0, elevatorSystem.status().get(0).getTargetFloor());
     }
 
     @Test
-    void shouldTargetFloorBeNullWhenElevatorOrderedAboveRange() {
+    void shouldTargetFloorBeMaximumFloorNumberWhenElevatorOrderedAboveRange() {
         elevatorSystem.pickUp(5, -1);
-        assertNull(elevatorSystem.status().get(0).getTargetFloor());
+        assertEquals(3, elevatorSystem.status().get(0).getTargetFloor());
     }
 
     @Test
-    void shouldTargetFloorBeNullWhenElevatorOrderedBelowRange() {
+    void shouldTargetFloorBe0WhenElevatorOrderedBelowRange() {
         elevatorSystem.pickUp(-1, 1);
-        assertNull(elevatorSystem.status().get(0).getTargetFloor());
+        assertEquals(0, elevatorSystem.status().get(0).getTargetFloor());
     }
 }

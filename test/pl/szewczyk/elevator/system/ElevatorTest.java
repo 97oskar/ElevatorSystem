@@ -26,7 +26,7 @@ class ElevatorTest {
     @Test
     void shouldElevatorMoveDownIfTargetFloorIsBelowCurrent() {
         int startingFloor = elevator.getCurrentFloor();
-        elevator.receiveNewCommand(new SetCommandAsFirst(new MoveToTarget(0)));
+        elevator.receiveNewCommand(new SetCommandAsLast(new MoveToTarget(0)));
         elevator.takeStep();
 
         assertEquals(true, startingFloor > elevator.getCurrentFloor());
@@ -49,10 +49,10 @@ class ElevatorTest {
 
         assertEquals(true, startingFloor.equals(elevator.getCurrentFloor()));
     }
-    
+
     @Test
     void shouldNextDirectionBeUpIfCommandIsMoveToOrderWithUpDirection() {
-        elevator.receiveNewCommand(new SetCommandAsFirst(new MoveToOrder(3, 1,
+        elevator.receiveNewCommand(new SetCommandAsLast(new MoveToOrder(3, 1,
                                    new SetCommandAsFirst(new ReceiveOrder(1, new SetTargetAsFirst())))));
 
         assertEquals(1, elevator.getNextDirection());
@@ -61,7 +61,7 @@ class ElevatorTest {
     @Test
     void shouldDirectionBeDownIfCommandIsMoveToOrderWithDownDirection() {
         elevator.receiveNewCommand(new SetCommandAsFirst(new MoveToOrder(1, -1,
-                new SetCommandAsFirst(new ReceiveOrder(1, new SetTargetAsFirst())))));
+                new SetCommandAsLast(new ReceiveOrder(1, new SetTargetAsLast())))));
 
         assertEquals(-1, elevator.getNextDirection());
     }
