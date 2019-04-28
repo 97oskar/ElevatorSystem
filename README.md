@@ -24,7 +24,7 @@ In order to run simulation you must provide two arguments:
      for example:
      5 12
 
-## Description of system architecture
+### Description of system architecture
 
 The system consist of the following components:
 1) Elevator System - A class representing the elevator control system. It provides an interface needed to interact with the system:
